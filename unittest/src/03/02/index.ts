@@ -12,5 +12,12 @@ export function add(a: number, b: number) {
 
 // 引き算
 export function sub(a: number, b: number) {
-  return a - b;
+  const sum = a - b;
+
+  // 最低値を0とする
+  if(sum < 0) {
+    return 0;
+  }
+
+  return sum;
 }
