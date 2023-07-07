@@ -1,7 +1,10 @@
 import { greet, sayGoodBye } from "./greet";
 
 jest.mock("./greet", () => ({
+  // これは実装済みだから、モック化しない
   ...jest.requireActual("./greet"),
+
+  // こっちはモック化する
   sayGoodBye: (name: string) => `Good bye, ${name}.`,
 }));
 
