@@ -7,12 +7,18 @@ jest.mock("../fetchers");
 describe("getGreet", () => {
   test("データ取得成功時：ユーザー名がない場合", async () => {
     // getMyProfile が resolve した時の値を再現
+    // spyOnでFetcherオブジェクトのgetMyProfileメソッドをスタブ化
     jest.spyOn(Fetchers, "getMyProfile").mockResolvedValueOnce({
+      // getMyProfileがresolveした時の値を再現
       id: "xxxxxxx-123456",
       email: "taroyamada@myapi.testing.com",
     });
+
+    // アサーション(正常時)
+    // getGreetが解決したら、"Hello, anonymous user!"が返ってくることを確認
     await expect(getGreet()).resolves.toBe("Hello, anonymous user!");
   });
+
   test("データ取得成功時：ユーザー名がある場合", async () => {
     jest.spyOn(Fetchers, "getMyProfile").mockResolvedValueOnce({
       id: "xxxxxxx-123456",
