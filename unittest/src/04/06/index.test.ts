@@ -6,6 +6,7 @@ import { ArticleInput } from "../fetchers/type";
 
 jest.mock("../fetchers");
 
+// モック生成関数
 function mockPostMyArticle(input: ArticleInput, status = 200) {
   if (status > 299) {
     return jest
@@ -13,8 +14,10 @@ function mockPostMyArticle(input: ArticleInput, status = 200) {
       .mockRejectedValueOnce(httpError);
   }
   try {
+    // バリデーション
     checkLength(input.title);
     checkLength(input.body);
+    
     return jest
       .spyOn(Fetchers, "postMyArticle")
       .mockResolvedValue({ ...postMyArticleData, ...input });
