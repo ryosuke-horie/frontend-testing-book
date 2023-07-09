@@ -1,5 +1,8 @@
 import { getMyArticles } from "../fetchers";
 
+/**
+ * 指定タグを含む記事に絞り込み加工したデータを返す関数
+ */
 export async function getMyArticleLinksByCategory(category: string) {
   // データを取得する関数
   const data = await getMyArticles();
